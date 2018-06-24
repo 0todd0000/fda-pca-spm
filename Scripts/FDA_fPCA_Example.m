@@ -1,8 +1,7 @@
 % Functional Data Analysis (fPCA)
 
-%Script details and extended comments are provided in:
-% ./Notebook/FDA-PCA-SPM.html
-% available at https://github.com/0todd0000/fda-pca-spm
+%Script details and extended comments are provided in the "Notebooks" folder at:
+%https://github.com/0todd0000/fda-pca-spm
 
 clear; clc   %clear workspace
 close all    %close all figures
@@ -12,34 +11,34 @@ load('Simulated_Data');
 
 % FDA (Preliminary Steps)
 
-time = linspace(0, 100, 51)'; 
+time       = linspace(0, 100, 51)'; 
 forcebasis = create_bspline_basis([0,100], 51, 6); 
 
-Lfdobj = int2Lfd(4); 
+Lfdobj              = int2Lfd(4); 
 smoothing_parameter = 1e-15;
-forcefdPar = fdPar(forcebasis, Lfdobj, smoothing_parameter);
+forcefdPar          = fdPar(forcebasis, Lfdobj, smoothing_parameter);
 
 
 % Functional Principal Components Analysis (fPCA)
-Pin_Force_Bow_fd = smooth_basis(time, [Pin_Force_Bow_Male Pin_Force_Bow_Female], forcefdPar);
-nharm  = 5;
+Pin_Force_Bow_fd     = smooth_basis(time, [Pin_Force_Bow_Male Pin_Force_Bow_Female], forcefdPar);
+nharm                = 5;
 Pin_Force_Bow_pcastr = pca_fd(Pin_Force_Bow_fd, nharm, forcefdPar);
 plot_pca_fd(Pin_Force_Bow_pcastr, 0, 1, 0, 0, 0);
 
 
-Forcemeanfd = mean(Pin_Force_Bow_fd);
-Forceharmfd  = Pin_Force_Bow_pcastr.harmfd;
+Forcemeanfd    = mean(Pin_Force_Bow_fd);
+Forceharmfd    = Pin_Force_Bow_pcastr.harmfd;
 
-Forcemeanvec = squeeze(eval_fd((time), Forcemeanfd));
-Forceharmmat = eval_fd(time, Forceharmfd);
+Forcemeanvec   = squeeze(eval_fd((time), Forcemeanfd));
+Forceharmmat   = eval_fd(time, Forceharmfd);
 
-Forcevarprop = Pin_Force_Bow_pcastr.varprop;
-Forcescores = Pin_Force_Bow_pcastr.harmscr; 
+Forcevarprop   = Pin_Force_Bow_pcastr.varprop;
+Forcescores    = Pin_Force_Bow_pcastr.harmscr; 
 stdevfPCscores = std(Forcescores);
-con1 = stdevfPCscores(1)*1;
+con1           = stdevfPCscores(1)*1;
 
-fPC1_Pos = Forcemeanvec + con1.*(Forceharmmat(:,1));
-fPC1_Neg = Forcemeanvec - con1.*(Forceharmmat(:,1));
+fPC1_Pos       = Forcemeanvec + con1.*(Forceharmmat(:,1));
+fPC1_Neg       = Forcemeanvec - con1.*(Forceharmmat(:,1));
 
 
 figure(110)
@@ -61,8 +60,7 @@ axis([0,100,-100,700])
 
 
 
-con2 = stdevfPCscores(2)*1;
-
+con2     = stdevfPCscores(2)*1;
 fPC2_Pos = Forcemeanvec + con2.*(Forceharmmat(:,2));
 fPC2_Neg = Forcemeanvec - con2.*(Forceharmmat(:,2));
 
