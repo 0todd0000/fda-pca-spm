@@ -9,7 +9,7 @@ close all    %close all figures
 load('Warmenhoven2018-bow-force');
 
 snpm  = spm1d.stats.nonparam.ttest2(Pin_Force_Bow_Male', Pin_Force_Bow_Female');
-snpmi = snpm.inference(0.05, 'two_tailed',true, 'force_iterations',true, 'iterations', 184756);
+snpmi = snpm.inference(0.05, 'two_tailed',true, 'force_iterations',true, 'iterations', 10000);
 
 figure(101)
 snpmi.plot();

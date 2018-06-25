@@ -9,7 +9,7 @@ close all    %close all figures
 load('Warmenhoven2018-bow-force');
 
 spm  = spm1d.stats.ttest2(Pin_Force_Bow_Male', Pin_Force_Bow_Female');
-spmi = spm1.inference(0.05, 'two_tailed',true);
+spmi = spm.inference(0.05, 'two_tailed',true);
 
 figure(101)
 spmi.plot();
