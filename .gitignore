@@ -2,3 +2,7 @@
 *.DS_Store
 .AppleDouble
 .LSOverride
+
+### Jupyter notebooks ###
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
