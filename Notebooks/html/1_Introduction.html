@@ -11805,9 +11805,9 @@ div#notebook {
 <hr>
 <h2 id="Requirements:">Requirements:<a class="anchor-link" href="#Requirements:">&#182;</a></h2><p>In addition to <strong>MATLAB</strong> (version 2017a or later), The following two software packages are required:</p>
 <ul>
-<li><strong>fda</strong> (version unknown; dated 2017-08-08) [<a href="http://www.functionaldata.org">http://www.functionaldata.org</a>]</li>
-<li><strong>spm1d</strong> (version M.0.4.5) <a href="http://www.spm1d.org">(www.spm1d.org)</a></li>
-<li><strong>Warmenhoven2018-bow-force.mat</strong> (data file distributed with workshop documents)</li>
+<li><strong>fdaM</strong> (version unknown; dated 2017-08-08) <a href="http://www.functionaldata.org">(www.functionaldata.org)</a> <a href="http://www.psych.mcgill.ca/misc/fda/downloads/FDAfuns/Matlab/fdaM.zip">(Direct download)</a></li>
+<li><strong>spm1d</strong> (version M.0.4.5) <a href="http://www.spm1d.org">(www.spm1d.org)</a> <a href="https://github.com/0todd0000/spm1dmatlab/archive/master.zip">(Direct download)</a></li>
+<li><strong>Warmenhoven2018-bow-force.mat</strong> (data file distributed with workshop documents in "Data" folder)</li>
 </ul>
 
 </div>
@@ -11821,8 +11821,8 @@ div#notebook {
 <h2 id="Step-1:---Set-the-MATLAB-path">Step 1:   Set the MATLAB path<a class="anchor-link" href="#Step-1:---Set-the-MATLAB-path">&#182;</a></h2><p>In order to use the <strong>fda</strong> and <strong>spm1d</strong> software packages you need to first set the <strong>MATLAB</strong> path so that <strong>MATLAB</strong> knows where to find these packages' functions.  If you are using Windows and you copied the required packages and dataset to the following locations:</p>
 <ul>
 <li>C:\Temp\fdaM</li>
-<li>C:\Temp\spm1dmatlab</li>
-<li>C:\Temp\Data.mat</li>
+<li>C:\Temp\spm1dmatlab-master</li>
+<li>C:\Temp\Warmenhoven2018-bow-force.mat</li>
 </ul>
 <p>Then you can set the path in <strong>MATLAB</strong>'s Command Window using the following commands:</p>
 
@@ -11834,8 +11834,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="s">&#39;C:\Temp\fdaM&#39;</span><span class="p">)</span>  <span class="c">%path to fda</span>
-<span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="s">&#39;C:\Temp\spm1dmatlab&#39;</span><span class="p">))</span>   <span class="c">%path to spm1d</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="s">&#39;C:\Temp\fdaM&#39;</span><span class="p">)</span>  <span class="c">%path to the fda package</span>
+<span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="s">&#39;C:\Temp\spm1dmatlab-master&#39;</span><span class="p">))</span>   <span class="c">%path to the spm1d package</span>
 <span class="n">addpath</span><span class="p">(</span><span class="s">&#39;C:\Temp&#39;</span><span class="p">)</span>  <span class="c">%path to the folder in which the data file has been saved</span>
 </pre></div>
 
@@ -11955,8 +11955,8 @@ div#notebook {
 
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAGkCAIAAACgjIjwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA
-B3RJTUUH4gYZABEcctGCwwAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
-bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNS1KdW4tMjAxOCAwOToxNzoyNzYcx1UAACAA
+B3RJTUUH4gYZACY2OW3rIQAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
+bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNS1KdW4tMjAxOCAwOTozODo1NML3Qx4AACAA
 SURBVHic7J19lBxVmf+fKBIEd1fWhQ0L/rjRs4k5yYY1CckGldxBBTwIii6KiNu3WT2wGlZZUOKq
 29WswjGuK4Q3PavUDIq4ICjh6AqK1SPmCGF5WY2eY0BuAyJkMIa3MMG83N8fz62nbr10dfV0zXTN
 zPM5OTBTXX27+k73/dbz3OdljjEGGIZhGGbQvGTQF8AwDMMwACxIDMMwTEVgQWIYhmEqAQsSwzAM
@@ -12606,8 +12606,8 @@ QmCC
 
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAGkCAIAAACgjIjwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA
-B3RJTUUH4gYZABEdBdayVQAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
-bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNS1KdW4tMjAxOCAwOToxNzoyOdGk6lIAACAA
+B3RJTUUH4gYZACY43tXGJgAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
+bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNS1KdW4tMjAxOCAwOTozODo1Niz5IjIAACAA
 SURBVHic7J1/fFP1vf/fpTWNtbq0Ujj8uBCx2q5ukoFtsYqDekczRfx1Veq8tNf9kK3U3W5odxW/
 U5lzRWdRqNexOdvNWfyxoXZzKQ42cDpu/RW9wq0QJBZkpwVDgAAhLeT7xyc9OUlOTs5JT5KT5PV8
 +NiST9NzPj0k55X3+/P6vN85fr+fAAAAgFQzLtUTAAAAAIggSAAAAHQCBAkAAIAugCABAADQBRAk
