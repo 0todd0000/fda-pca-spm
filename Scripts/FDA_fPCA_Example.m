@@ -6,7 +6,7 @@
 clear; clc   %clear workspace
 close all    %close all figures
 
-load('Simulated_Data');
+load('Warmenhoven2018-bow-force');
 
 
 % FDA (Preliminary Steps)

@@ -6,7 +6,7 @@
 clear; clc   %clear workspace
 close all    %close all figures
 
-load('Simulated_Data');
+load('Warmenhoven2018-bow-force');
 
 % FDA preliminary steps
 time       = linspace(0, 100, 51)'; 
@@ -20,4 +20,4 @@ Pin_Force_Bow_Female_fd = smooth_basis(time, Pin_Force_Bow_Female, forcefdPar);
 Pin_Force_Bow_Male_fd   = smooth_basis(time, Pin_Force_Bow_Male, forcefdPar);
 
 % Functional T-Test (results plotted automatically)
-tpermStr1 = tperm_fd(Pin_Force_Bow_Male_fd, Pin_Force_Bow_Female_fd, 184756, 0.05);
+tpermStr1 = tperm_fd(Pin_Force_Bow_Male_fd, Pin_Force_Bow_Female_fd, 10000, 0.05);

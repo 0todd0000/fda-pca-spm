@@ -6,7 +6,7 @@
 clear; clc   %clear workspace
 close all    %close all figures
 
-load('Simulated_Data');
+load('Warmenhoven2018-bow-force');
 
 spm  = spm1d.stats.ttest2(Pin_Force_Bow_Male', Pin_Force_Bow_Female');
 spmi = spm1.inference(0.05, 'two_tailed',true);
