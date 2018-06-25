@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>FDA-PCA-SPM</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>1_Introduction</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,16 +11775,25 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Advanced-statistical-analysis-of-biomechanical-time-series:-PCA,-FDA-and-SPM">Advanced statistical analysis of biomechanical time series: PCA, FDA and SPM<a class="anchor-link" href="#Advanced-statistical-analysis-of-biomechanical-time-series:-PCA,-FDA-and-SPM">&#182;</a></h1><p>This workshop was held on 6 July 2018 at Trinity College, Dublin. This Jupyter notebook is distributed with the workshop documents and directed at users who may desire more details than are provided in the <strong>MATLAB</strong> scripts, also distributed with the workshop material:</p>
+<h1 id="Advanced-statistical-analysis-of-biomechanical-time-series:-PCA,-FDA-and-SPM">Advanced statistical analysis of biomechanical time series: PCA, FDA and SPM<a class="anchor-link" href="#Advanced-statistical-analysis-of-biomechanical-time-series:-PCA,-FDA-and-SPM">&#182;</a></h1><p>This seminar was held on 6 July 2018 at Trinity Biomedical Sciences Institute in Dublin. This collection of <strong>MATLAB</strong> notebooks is distributed with the seminar materials, and provides extended decriptions of the scripts, which are also distributed with the workshop material ("Scripts" folder):</p>
 <ul>
 <li>FDA_fPCA_Example.m</li>
 <li>FDA_T_Test_Example.m</li>
 <li>SPM_T_Test_Example.m</li>
 <li>SnPM_T_Test_Example.m</li>
 </ul>
-<p>Data for this World Congress of Biomechanics (WCB) 2018 workshop are from:</p>
-<p>Warmenhoven, J. S., Harrison, A., Robinson, M., Vanrenterghem, J., Bargary, N., Smith, R., Cobley, S., Draper, C., Donnelly, C., &amp; Pataky, T. (2018). A force profile analysis comparison between functional data analysis, statistical parametric mapping and statistical non-parametric mapping in on-water single sculling. Journal of Science &amp; Medicine in Sport, In Press.  <a href="https://www.jsams.org/article/S1440-2440(18)30091-4/abstract">https://www.jsams.org/article/S1440-2440(18)30091-4/abstract</a></p>
-<p>For any questions related to this workshop, scripts or this notebook, please email: <a href="mailto:john.warmenhoven@hotmail.com">john.warmenhoven@hotmail.com</a></p>
+<p>These notebooks were created using <a href="https://jupyter.org"><strong>Jupyter</strong></a> using the <a href="https://github.com/calysto/matlab_kernel"><strong>Jupyter</strong> <strong>MATLAB</strong> kernel</a>. The HTML renderings of these notebooks (in the ./Notebooks/HTML folder) can be opened in any browser. For proper HTML rendering ensure that the ./Notebooks/HTML/figs folder is saved in the same directory as the HTML files. Alternatively the IPYNB files can be opened in <strong>Jupyter</strong> where you can interactively change the code and see the results.</p>
+<p>For any questions related to this seminar or its GitHub repository please email: <a href="mailto:john.warmenhoven@hotmail.com">john.warmenhoven@hotmail.com</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Data-source">Data source<a class="anchor-link" href="#Data-source">&#182;</a></h2><p>Warmenhoven, J. S., Harrison, A., Robinson, M., Vanrenterghem, J., Bargary, N., Smith, R., Cobley, S., Draper, C., Donnelly, C., &amp; Pataky, T. (2018). A force profile analysis comparison between functional data analysis, statistical parametric mapping and statistical non-parametric mapping in on-water single sculling. Journal of Science &amp; Medicine in Sport, In Press.  <a href="https://doi.org/10.1016/j.jsams.2018.03.009">https://doi.org/10.1016/j.jsams.2018.03.009</a></p>
 
 </div>
 </div>
@@ -11796,9 +11805,9 @@ div#notebook {
 <hr>
 <h2 id="Requirements:">Requirements:<a class="anchor-link" href="#Requirements:">&#182;</a></h2><p>In addition to <strong>MATLAB</strong> (version 2017a or later), The following two software packages are required:</p>
 <ul>
-<li><strong>fda</strong> (version unknown) [link]</li>
+<li><strong>fda</strong> (version unknown; dated 2017-08-08) [<a href="http://www.functionaldata.org">http://www.functionaldata.org</a>]</li>
 <li><strong>spm1d</strong> (version M.0.4.5) <a href="http://www.spm1d.org">(www.spm1d.org)</a></li>
-<li><strong>Simulated_Data.mat</strong> data file distributed with workshop documents</li>
+<li><strong>Warmenhoven2018-bow-force.mat</strong> (data file distributed with workshop documents)</li>
 </ul>
 
 </div>
@@ -11809,13 +11818,13 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h2 id="Step-1:--Set-MATLAB-path">Step 1:  Set MATLAB path<a class="anchor-link" href="#Step-1:--Set-MATLAB-path">&#182;</a></h2><p>In order to use the <strong>spm1d</strong> and <strong>fda</strong> software packages you need to first set the MATLAB path so that MATLAB knows where to find these packages' functions.  If you are using Windows and you copied the required packages and dataset to the following locations:</p>
+<h2 id="Step-1:---Set-the-MATLAB-path">Step 1:   Set the MATLAB path<a class="anchor-link" href="#Step-1:---Set-the-MATLAB-path">&#182;</a></h2><p>In order to use the <strong>fda</strong> and <strong>spm1d</strong> software packages you need to first set the <strong>MATLAB</strong> path so that <strong>MATLAB</strong> knows where to find these packages' functions.  If you are using Windows and you copied the required packages and dataset to the following locations:</p>
 <ul>
 <li>C:\Temp\fdaM</li>
 <li>C:\Temp\spm1dmatlab</li>
-<li>C:\Temp\Simulated_Data.mat</li>
+<li>C:\Temp\Data.mat</li>
 </ul>
-<p>Then you can set the path in MATLAB's Command Window using the following commands:</p>
+<p>Then you can set the path in <strong>MATLAB</strong>'s Command Window using the following commands:</p>
 
 </div>
 </div>
@@ -11839,7 +11848,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To test that you have set the paths correctly for <strong>fda</strong>, enter the following command:</p>
+<p>To test that you have set the paths correctly, enter the following commands:</p>
 
 </div>
 </div>
@@ -11850,50 +11859,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">create_bspline_basis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To test that you have set the paths correctly for <strong>spm1d</strong>, enter the following command:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">spm1d</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">ttest</span><span class="p">(</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To test that you have set the paths correctly for the dataset, enter the following command:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">load</span><span class="p">(</span><span class="s">&#39;Simulated_Data&#39;</span><span class="p">)</span>
+<span class="n">spm1d</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">ttest</span><span class="p">(</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">);</span>
+<span class="n">load</span><span class="p">(</span><span class="s">&#39;Warmenhoven2018-bow-force&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11915,17 +11882,16 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h2 id="Step-2:--Load-data">Step 2:  Load data<a class="anchor-link" href="#Step-2:--Load-data">&#182;</a></h2><p>Next load and visualize the data.</p>
-
+<h2 id="Step-2:--Load-data">Step 2:  Load data<a class="anchor-link" href="#Step-2:--Load-data">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">load</span><span class="p">(</span><span class="s">&#39;Simulated_Data&#39;</span><span class="p">)</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">load</span><span class="p">(</span><span class="s">&#39;Warmenhoven2018-bow-force&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11937,16 +11903,31 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This will load four variables into the <strong>MATLAB</strong> workspace, as listed in the Workspace window.</p>
-<p><img src="ss1.jpeg" width="300"></p>
-<p>Each variable is a (51 x 10) array, where 51 is the number of time nodes and 10 is the number of subjects. This document will consider only the first two ("Bow") variables. One way to visualize the data is to use means and standard deviation (SD) clouds like this:</p>
+<p>This will load two variables into the <strong>MATLAB</strong> workspace, as listed in the Workspace window.</p>
+<p><img src="figs/screenshot01.jpeg" width="300"></p>
+<p>Each variable is a (Q x J) array, where Q=51 is the number of time nodes and J=10 is the number of observations (or subjects).</p>
+<p><strong>Note!</strong></p>
+<ul>
+<li><strong>fda</strong> accepts (Q x J) data arrays</li>
+<li><strong>spm1d</strong> accepts (J x Q) data arrays</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Step-3:--Visualize-data">Step 3:  Visualize data<a class="anchor-link" href="#Step-3:--Visualize-data">&#182;</a></h2><p>One way to visualize the data is to plot all subjects' data like this:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">h0</span> <span class="p">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">Pin_Force_Bow_Female</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
@@ -11974,8 +11955,8 @@ div#notebook {
 
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAGkCAIAAACgjIjwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA
-B3RJTUUH4gYYAiU33n87fwAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
-bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNC1KdW4tMjAxOCAxMTozNzo1NLIznekAACAA
+B3RJTUUH4gYZABEcctGCwwAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
+bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNS1KdW4tMjAxOCAwOToxNzoyNzYcx1UAACAA
 SURBVHic7J19lBxVmf+fKBIEd1fWhQ0L/rjRs4k5yYY1CckGldxBBTwIii6KiNu3WT2wGlZZUOKq
 29WswjGuK4Q3PavUDIq4ICjh6AqK1SPmCGF5WY2eY0BuAyJkMIa3MMG83N8fz62nbr10dfV0zXTN
 zPM5OTBTXX27+k73/dbz3OdljjEGGIZhGGbQvGTQF8AwDMMwACxIDMMwTEVgQWIYhmEqAQsSwzAM
@@ -12589,14 +12570,15 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The means and standard deviations (SDs) can be computed and plotted like this:</p>
+<hr>
+<h2 id="Step-4:--Descriptive-statitstics">Step 4:  Descriptive statitstics<a class="anchor-link" href="#Step-4:--Descriptive-statitstics">&#182;</a></h2><p>Another way to visualize the data is to use means and standard deviation (SD) clouds like this:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">h0</span> <span class="p">=</span> <span class="n">spm1d</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">plot_meanSD</span><span class="p">(</span><span class="n">Pin_Force_Bow_Female</span><span class="o">&#39;</span><span class="p">,</span> <span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">);</span>
@@ -12624,8 +12606,8 @@ QmCC
 
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAGkCAIAAACgjIjwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA
-B3RJTUUH4gYYAiU4TsAm7gAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
-bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNC1KdW4tMjAxOCAxMTozNzo1Nlw9/MUAACAA
+B3RJTUUH4gYZABEdBdayVQAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
+bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNS1KdW4tMjAxOCAwOToxNzoyOdGk6lIAACAA
 SURBVHic7J1/fFP1vf/fpTWNtbq0Ujj8uBCx2q5ukoFtsYqDekczRfx1Veq8tNf9kK3U3W5odxW/
 U5lzRWdRqNexOdvNWfyxoXZzKQ42cDpu/RW9wq0QJBZkpwVDgAAhLeT7xyc9OUlOTs5JT5KT5PV8
 +NiST9NzPj0k55X3+/P6vN85fr+fAAAAgFQzLtUTAAAAAIggSAAAAHQCBAkAAIAugCABAADQBRAk
@@ -13062,339 +13044,6 @@ R5gD8E1+v9/n81H/9fA7k8k0OTlpMBiysrI+j/P6+ooQYrFYCCGPx0Oj0eLdiRCTydvbm1gs1mq1
 HA4nrjgA/CxYIQHwTTk5OX+rRgihpqam0tLS09PTL+OwWCyqGiGEGAzGN/bFxWRycHDQ0dEB1Qj8
 c6AgAfB/WVhY0Gg0KZ40FAqdnZ0pFIoUzwtA4uArOwAAAGkBVkgAAADSAhQkAAAAaQEKEgAAgLQA
 BQkAAEBa+AU+XYJYPTaIAQAAAABJRU5ErkJggg==
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h2 id="SPM-t-test-example">SPM t test example<a class="anchor-link" href="#SPM-t-test-example">&#182;</a></h2><p>The data can be loaded below and for the purposes of this exemplar script, has been labelled "Simulated_Data."</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="n">genpath</span><span class="p">(</span><span class="s">&#39;/Users/todd/WorkingCopies/spm1dmatlab/trunk&#39;</span><span class="p">))</span>
-<span class="n">load</span><span class="p">(</span><span class="s">&#39;/Users/todd/Desktop/Simulated_Data.mat&#39;</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a parametric t-test, and the <strong>spm1d.stats.ttest2</strong> and <strong>inference</strong> functions are described comprehensively at <a href="http://www.spm1d.org">spm1d.org</a> and within the functions as well. This t-test is for the bow-side data and alpha is set at 0.05.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">spm</span>  <span class="p">=</span> <span class="n">spm1d</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">ttest2</span><span class="p">(</span><span class="n">Pin_Force_Bow_Male</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">Pin_Force_Bow_Female</span><span class="o">&#39;</span><span class="p">);</span>
-<span class="n">spmi</span> <span class="p">=</span> <span class="n">spm</span><span class="p">.</span><span class="n">inference</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="s">&#39;two_tailed&#39;</span><span class="p">,</span> <span class="n">true</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The <strong>plot</strong> methods of the spmi variable allow for visualization of the results of the t-test for the bow-side of the boat.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">spmi</span><span class="p">.</span><span class="n">plot</span><span class="p">();</span>
-<span class="n">spmi</span><span class="p">.</span><span class="n">plot_threshold_label</span><span class="p">();</span> 
-<span class="n">spmi</span><span class="p">.</span><span class="n">plot_p_values</span><span class="p">();</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-QmCC
 "
 >
 </div>
