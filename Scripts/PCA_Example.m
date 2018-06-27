@@ -1,63 +1,17 @@
-%% Load sample data
 
-% Data for this World Congress of Biomechanics (WCB) 2018 workshop was 
-% taken from:
+% Principal Components Analysis (PCA)
 
-% Warmenhoven, J. S., Harrison, A., Robinson, M., Vanrenterghem, J., 
-% Bargary, N., Smith, R., Cobley, S., Draper, C., Donnelly, C., & Pataky,
-% T. (2017). A force profile analysis comparison between functional data 
-% analysis, statistical parametric mapping and statistical non-parametric 
-% mapping in on-water single sculling. Journal of Science & Medicine in 
-% Sport, In Press.
+%Script details and extended comments are provided in the "Notebooks" folder at:
+%https://github.com/0todd0000/fda-pca-spm
 
-% For any questions related to this workshop (and script), please email
-% john.warmenhoven@hotmail.com.
+clear; clc   %clear workspace
+close all    %close all figures
 
-% The data can be loaded below and for the purposes of this exemplar 
-% script, has been labelled "Simulated_Data."
+load('Warmenhoven2018-bow-force.mat');
 
-load('Simulated_Data');
+Y = [Pin_Force_Bow_Male Pin_Force_Bow_Female]';
+t = linspace(0, 100, 51)'; %time
 
-% This loads four seperate matrices which will be compared using Functional
-% Data Analysis (FDA) techniques, Statistical Parametric and 
-% Non-Parametric Mapping (SPM & SnPM) techniques and Principal Components 
-% Analysis when it is applied to waveform data. 
-
-% 1. 'Pin_Force_Bow_Male' is male data for the bow-side (left hand) and is
-% ten curves in total.
-% 2. 'Pin_Force_Bow_Female' is female data for the bow-side (left hand) and
-% is ten curves in total.
-% 3. 'Pin_Force_Stroke_Male' is male data for the stroke-side (right hand) 
-% and is ten curves in total.
-% 4. 'Pin_Force_Stroke_Female' is female data for the stroke-side (right 
-% hand) and is ten curves in total.
-
-% In each case these techniques will explore gender differences that exist
-% in the characteristics of these profiles. 
-
-%% Principal Components Analysis (PCA) of Waveforms
-
-% To demonstrate how PCA can be applied to this data we will focus on the
-% bow-side forces. The male and female data are combined into a single
-% matrix to create a bow-side data set.
-
-Bow_Side_Data = [Pin_Force_Bow_Male Pin_Force_Bow_Female]';
-
-% The forces have been normalised to 51 data points using an interpolating
-% cublic spline. Here they are centered within the time interval (which in 
-% this case after temporal normalization is percentage of the stroke
-% cycle).
-
-time = linspace(0, 100, 51)'; 
-
-% The 'pca' function is an inbuilt Matlab function and can be applied to
-% waveform data as a means of dimension reduction. This function returns
-% co-efficients (x), which are principal components (PC), PC scores (y), 
-% eigenvalues (z) of the covariance matrix of 'Bow_Side_Data,' Hotelling's 
-% T-squared statistic for each observation (ii), and the percentage of the
-% total variation attributed to each PC (iii). 
-
-[x,y,z,ii,iii] = pca(Bow_Side_Data);
 
 % The principal components themselves are time-series and can be observed 
 % graphically. See the figures below. figure(105) shows PC1 and figure(106)
