@@ -11879,7 +11879,7 @@ present does not allow for the selection of a '0' smoothing parameter, and thus 
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">tpermStr1</span> <span class="p">=</span> <span class="n">tperm_fd</span><span class="p">(</span><span class="n">Pin_Force_Bow_Male_fd</span><span class="p">,</span> <span class="n">Pin_Force_Bow_Female_fd</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">);</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">results</span> <span class="p">=</span> <span class="n">tperm_fd</span><span class="p">(</span><span class="n">Pin_Force_Bow_Male_fd</span><span class="p">,</span> <span class="n">Pin_Force_Bow_Female_fd</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11899,8 +11899,8 @@ present does not allow for the selection of a '0' smoothing parameter, and thus 
 
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAGkCAIAAACgjIjwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA
-B3RJTUUH4gYaCDIWMAvi6gAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
-bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyNi1KdW4tMjAxOCAxNzo1MDoyMhHiUMkAACAA
+B3RJTUUH4gYbFiIoFawEDwAAACR0RVh0U29mdHdhcmUATUFUTEFCLCBUaGUgTWF0aFdvcmtzLCBJ
+bmMuPFjdGAAAACJ0RVh0Q3JlYXRpb24gVGltZQAyOC1KdW4tMjAxOCAwNzozNDo0MPFD4pwAACAA
 SURBVHic7d15eIxX+wfwMyYJEbGLWDOJMtYgG0KZaENq6ZtSbSgyoVpUtMqvqNebSWlf7UtLgyqt
 JEUpRdHaqsnE0qqiC61dJgQhsSQSZH1+f5xxMiaTyWQy8ywz38/Vq1c8s92zPfecc+5zjozjOAIA
 ACC0WkIHAAAAQAgSEgAAiAQSEgAAiAISEgAAiAISEgAAiAISEgAAiAISEgAAiAISEgAAiAISEgAA
@@ -12283,7 +12283,27 @@ Xb169Y8//nj11VeRjQDECS0kcHA3b948cODArVu3vLy8evTo0aVLF6EjAgDTkJAAAEAUMA8JAABE
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The t statistic continuum here is nearly identical to the t statistic continuum from the SPM and SnPM analyses.  The only differences are: (1) the absolute t value is used, implying that this is a two-tailed test, and (2) the small differences in the t curve arise from the basis function modeling and smoothing processes assumptions applied to the dataset.</p>
-<p>Other than these two differences, FDA-based permutation testing is identical to SnPM's permutation testing.</p>
+<p>The output results are saved in a structre containing the following variables:</p>
+<p><img src="figs/screenshot-4-1.jpeg" width="300"></p>
+<ul>
+<li><p><strong>Tvals</strong>: absolute t statistic value (solid blue line on the graph)</p>
+</li>
+<li><p><strong>qval</strong> = critical t statistic for the specified alpha level (red dotted line on the graph)</p>
+</li>
+<li><p><strong>pval</strong> = p value for regions identified as significant between groups</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Comment">Comment<a class="anchor-link" href="#Comment">&#182;</a></h2><p>While the results in this notebook show that FDA-based permutation testing is effectively identical to SnPM's permutation testing for this dataset, it is not generally true that FDA-based permutation testing is equivalent to SnPM. FDA's basis function,  smoothness and registration modeling constitute an analysis framework that is not replicated by SPM &amp; SnPM;  SPM and SnPM instead regard smoothing and registration as "pre-processing" procedures which, of course, can affect the final results, but which are also modularly separable from statistical testing.</p>
+<p>For most biomechanics datasets, in which the data are inherently smooth and well-behaved, it has been our observation that FDA-based permutation tests are equivalent to (data smoothing) + (data registration) + (SnPM). There may nevertheless be cases in Biomechanics where FDA and SnPM differ non-trivially, so we encourage researchers to be vigillant and not to presume that FDA and SPM / SnPM hypothesis testing results are always similar.</p>
 
 </div>
 </div>
